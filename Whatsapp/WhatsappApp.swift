@@ -25,7 +25,7 @@ struct WhatsappApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WhatsappMainView()
         }
         .modelContainer(sharedModelContainer)
     }
