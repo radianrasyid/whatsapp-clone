@@ -8,15 +8,194 @@
 import Foundation
 import SwiftUI
 import Photos
+import SwiftData
 
-@Observable class WhatsappChatsViewModel {
+//@Observable class WhatsappChatsViewModel {
+//    var modelContext: ModelContext
+//    var searchText: String = ""
+//    var isMoreSheetShowed: Bool = false
+//    var sheetData : WhatsappChatsModel? = nil {
+//        didSet{
+//            isMoreSheetShowed = true
+//        }
+//    }
+//    var isShowingArchivedChats: Bool = false
+//    var showingCamera: Bool = false
+//    var image: UIImage?
+//    var recentMedia: [MediaItem] = []
+//    var alphabet = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ".map { String($0) }
+//    var isCreateChatSheetShowed: Bool = false
+//    var selectedType = "all"
+//    var contacts: [String: [Contact]] = [
+//        "Frequently contacted": [
+//            Contact(name: "زوجة", details: nil),
+//            Contact(name: "Radian Rasyid", details: "@radianrasyid"),
+//            // Add more contacts here...
+//        ],
+//        "A": [
+//            Contact(name: "Astral Projection", details: nil),
+//            // Add more contacts here...
+//        ],
+//        // Add more sections here...
+//    ]
+//    var chatData = [WhatsappChatsStorage]()
+//    var archivedChats = [WhatsappArchivedChatsStorage]()
+//    
+//    init(modelContext: ModelContext) {
+//        self.modelContext = modelContext
+//        fetchData()
+//    }
+//    
+//    func togglePinned(for item: WhatsappChatsModel){
+//        if let index = chatData.firstIndex(where: {$0.id == item.id}){
+//            chatData[index].pinned.toggle()
+////            var currentWhatsappAppStorage: WhatsappAppStorage = updateStorage()
+////            
+////            if let index = currentWhatsappAppStorage.chats.firstIndex(where: {$0.id == item.id}){
+////                currentWhatsappAppStorage.chats[index].pinned.toggle()
+////                do{
+////                    try modelContext.save()
+////                }catch{
+////                    print("Failed to update WhatsappAppStorage: \(error)")
+////                }
+////            }
+//        }
+//    }
+//    
+//    func moveToArchived(for item: WhatsappChatsModel){
+////        var currentWhatsappAppStorage: WhatsappAppStorage = updateStorage()
+//        if let index = chatData.firstIndex(where: {$0.id == item.id}){
+//            archivedChats.append(WhatsappArchivedChatsStorage(id: chatData[index].id, username: chatData[index].username, latestActivityTime: chatData[index].latestActivityTime, latestChatBubble: chatData[index].latestChatBubble, pinned: chatData[index].pinned, totalUnreadedChat: chatData[index].totalUnreadedChat))
+////            currentWhatsappAppStorage.archivedChats.append(WhatsappChatsModelPersisted(id: chatData[index].id, username: chatData[index].username, latestActivityTime: chatData[index].latestActivityTime, latestChatBubble: chatData[index].latestChatBubble, pinned: chatData[index].pinned, totalUnreadedChat: chatData[index].totalUnreadedChat))
+//            chatData.remove(at: index)
+////            currentWhatsappAppStorage.chats.remove(at: index)
+////            do{
+////                try modelContext.save()
+////            }catch{
+////                print("Failed to update WhatsappAppStorage: \(error)")
+////            }
+//        }
+//    }
+//    
+//    func moveToUnarchived(for item: WhatsappChatsModel){
+//        if let index = archivedChatData.firstIndex(where: {$0.id == item.id}){
+//            chatData.append(archivedChatData[index])
+//            
+//            archivedChatData.remove(at: index)
+//        }
+//    }
+//    
+////    @MainActor
+//    func toggleRead(for item: WhatsappChatsModel){
+////        var currentWhatsappAppStorage: WhatsappAppStorage = updateStorage()
+//        if let index = chatData.firstIndex(where: {
+//            $0.id == item.id
+//        }){
+//            if(chatData[index].totalUnreadedChat > 0){
+//                chatData[index].totalUnreadedChat = 0
+//            }else{
+//                chatData[index].totalUnreadedChat = 1
+//            }
+//        }
+//        
+////        if let index = currentWhatsappAppStorage.chats.firstIndex(where: {$0.id == item.id}){
+////            if(currentWhatsappAppStorage.chats[index].totalUnreadedChat > 0){
+////                currentWhatsappAppStorage.chats[index].totalUnreadedChat = 0
+////            }else{
+////                currentWhatsappAppStorage.chats[index].totalUnreadedChat = 1
+////            }
+////            
+////            do{
+////                try modelContext.save()
+////            }catch{
+////                print("Failed to update WhatsappAppStorage: \(error)")
+////            }
+////        }
+//    }
+    
+//    @MainActor
+//    func deleteAChat(for item: WhatsappChatsModel){
+////        var currentWhatsappAppStorage: WhatsappAppStorage = updateStorage()
+//        if let index = chatData.firstIndex(where: {$0.id == item.id}){
+//            chatData.remove(at: index)
+//            if let archivedDataIndex = archivedChatData.firstIndex(where: {$0.id == item.id}){
+//                archivedChatData.remove(at: archivedDataIndex)
+//            }
+//        }
+//        
+////        if let index = currentWhatsappAppStorage.chats.firstIndex(where: {$0.id == item.id}){
+////            currentWhatsappAppStorage.chats.remove(at: index)
+////            if let archiveDataIndex = currentWhatsappAppStorage.archivedChats.firstIndex(where: {$0.id == item.id}){
+////                currentWhatsappAppStorage.archivedChats.remove(at: archiveDataIndex)
+////            }
+////        }
+////        
+////        do{
+////            try modelContext.save()
+////        }catch{
+////            print("Failed to update WhatsappAppStorage: \(error)")
+////        }
+//    }
+    
+//    private static func fetchOrCreateStorage(modelContext: ModelContext) -> WhatsappAppStorage {
+//            do {
+//                let fetchDescriptor = FetchDescriptor<WhatsappAppStorage>()
+//                if let existing = try modelContext.fetch(fetchDescriptor).first {
+//                    return existing
+//                } else {
+//                    let newStorage = WhatsappAppStorage()
+//                    modelContext.insert(newStorage)
+//                    try modelContext.save()
+//                    return newStorage
+//                }
+//            } catch {
+//                print("Failed to fetch or create WhatsappAppStorage: \(error)")
+//                return WhatsappAppStorage()
+//            }
+//        }
+    
+//    @MainActor
+//    private func updateStorage() -> WhatsappAppStorage{
+//        do{
+//            let fetchDescriptor = FetchDescriptor<WhatsappAppStorage>(sortBy: [SortDescriptor(\.id)])
+//            let storage = try modelContext.fetch(fetchDescriptor).first ?? WhatsappAppStorage()
+//            return storage
+//        }catch{
+//            print("Failed to update WhatsappAppStorage: \(error)")
+//            return WhatsappAppStorage()
+//        }
+//    }
+    
+//    func fetchData(){
+//        do{
+//            let descriptor = FetchDescriptor<WhatsappChatsStorage>(sortBy: [SortDescriptor(\.id)])
+//            let archivedDescriptor = FetchDescriptor<WhatsappArchivedChatsStorage>(sortBy: [SortDescriptor(\.id)])
+//            
+//            chatData = try modelContext.fetch(descriptor)
+//            archivedChats = try modelContext.fetch(archivedDescriptor)
+//        }catch{
+//            print("Fetching data from view model failed: \(error)")
+//        }
+//    }
+//}
+
+enum WhatsappChatsStorageType {
+    case regular(WhatsappChatsStorage)
+    case archived(WhatsappArchivedChatsStorage)
+}
+
+@Observable class WhatsappChatsContextViewModel {
+    var modelContext: ModelContext
+    var chats = [WhatsappChatsStorage]()
+    var archivedChats = [WhatsappArchivedChatsStorage]()
     var searchText: String = ""
     var isMoreSheetShowed: Bool = false
-    var sheetData : WhatsappChatsModel? = nil {
+    var sheetData : WhatsappChatsStorageType? = nil {
         didSet{
             isMoreSheetShowed = true
         }
     }
+    var isShowingArchivedChats: Bool = false
     var showingCamera: Bool = false
     var image: UIImage?
     var recentMedia: [MediaItem] = []
@@ -35,62 +214,92 @@ import Photos
         ],
         // Add more sections here...
     ]
-    var chatData: [WhatsappChatsModel] = [
-        WhatsappChatsModel(username: "Alice", latestActivityTime: "09:15", latestChatBubble: "Hey, how are you?", pinned: false, totalUnreadedChat: 3),
-        WhatsappChatsModel(username: "Bob", latestActivityTime: "Yesterday", latestChatBubble: "See you tomorrow!", pinned: false, totalUnreadedChat: 0),
-        WhatsappChatsModel(username: "Charlie", latestActivityTime: "15/07/24", latestChatBubble: "Meeting rescheduled", pinned: true, totalUnreadedChat: 1),
-        WhatsappChatsModel(username: "David", latestActivityTime: "Monday", latestChatBubble: "Can you send the file?", pinned: false, totalUnreadedChat: 5),
-        WhatsappChatsModel(username: "Eva", latestActivityTime: "10:45", latestChatBubble: "Had a great time!", pinned: true, totalUnreadedChat: 2),
-        WhatsappChatsModel(username: "Frank", latestActivityTime: "12:30", latestChatBubble: "Let's catch up soon", pinned: false, totalUnreadedChat: 0),
-        WhatsappChatsModel(username: "Grace", latestActivityTime: "03/06/24", latestChatBubble: "Happy Birthday!", pinned: false, totalUnreadedChat: 4),
-        WhatsappChatsModel(username: "Hank", latestActivityTime: "Wednesday", latestChatBubble: "I'll call you back", pinned: false, totalUnreadedChat: 0),
-        WhatsappChatsModel(username: "Ivy", latestActivityTime: "14:20", latestChatBubble: "Congrats on the promotion!", pinned: false, totalUnreadedChat: 1),
-        WhatsappChatsModel(username: "Jake", latestActivityTime: "Friday", latestChatBubble: "Check this out", pinned: true, totalUnreadedChat: 7),
-        WhatsappChatsModel(username: "Karen", latestActivityTime: "02/04/24", latestChatBubble: "Good night!", pinned: false, totalUnreadedChat: 0),
-        WhatsappChatsModel(username: "Leo", latestActivityTime: "16:50", latestChatBubble: "Where are you?", pinned: false, totalUnreadedChat: 3),
-        WhatsappChatsModel(username: "Mia", latestActivityTime: "Saturday", latestChatBubble: "Thanks a lot!", pinned: false, totalUnreadedChat: 0),
-        WhatsappChatsModel(username: "Nina", latestActivityTime: "08:00", latestChatBubble: "Let's meet up", pinned: false, totalUnreadedChat: 6),
-        WhatsappChatsModel(username: "Oscar", latestActivityTime: "01/08/24", latestChatBubble: "On my way", pinned: true, totalUnreadedChat: 0),
-        WhatsappChatsModel(username: "Paul", latestActivityTime: "19:00", latestChatBubble: "Can we talk?", pinned: false, totalUnreadedChat: 1),
-        WhatsappChatsModel(username: "Quinn", latestActivityTime: "22:10", latestChatBubble: "See you soon", pinned: false, totalUnreadedChat: 3),
-        WhatsappChatsModel(username: "Rachel", latestActivityTime: "Sunday", latestChatBubble: "Got it, thanks!", pinned: false, totalUnreadedChat: 0),
-        WhatsappChatsModel(username: "Steve", latestActivityTime: "11:55", latestChatBubble: "Lunch at 1?", pinned: false, totalUnreadedChat: 0),
-        WhatsappChatsModel(username: "Tina", latestActivityTime: "18:30", latestChatBubble: "Let's go!", pinned: true, totalUnreadedChat: 8)
-    ]
     
-    var archivedChatData: [WhatsappChatsModel] = []
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        fetchData()
+    }
     
-    func togglePinned(for item: WhatsappChatsModel){
-        if let index = chatData.firstIndex(where: {$0.id == item.id}){
-            chatData[index].pinned.toggle()
+    func addSample(){
+        print("Adding sample")
+        let chats = WhatsappChatsStorage(username: WhatsappChatsExample.Chat.username, latestActivityTime: WhatsappChatsExample.Chat.latestActivityTime, latestChatBubble: WhatsappChatsExample.Chat.latestChatBubble, pinned: WhatsappChatsExample.Chat.pinned, totalUnreadedChat: WhatsappChatsExample.Chat.totalUnreadedChat)
+        
+        modelContext.insert(chats)
+        fetchData()
+        print("Adding sample finished")
+    }
+    
+    func deleteChat(for item: WhatsappChatsStorage){
+        modelContext.delete(item)
+        do{
+            try modelContext.save()
+            fetchData()
+        }catch{
+            print("Error when trying to update data in deleteChat(): \(error)")
         }
     }
     
-    func moveToArchived(for item: WhatsappChatsModel){
-        if let index = chatData.firstIndex(where: {$0.id == item.id}){
-            archivedChatData.append(chatData[index])
-            chatData.remove(at: index)
+    func deleteArchivedChat(for item: WhatsappArchivedChatsStorage){
+        modelContext.delete(item)
+        do{
+            try modelContext.save()
+            fetchData()
+        }catch{
+            print("Error when trying to update data in deleteArchivedChat(): \(error)")
         }
     }
     
-    func toggleRead(for item: WhatsappChatsModel){
-        if let index = chatData.firstIndex(where: {
-            $0.id == item.id
-        }){
-            if(chatData[index].totalUnreadedChat > 0){
-                chatData[index].totalUnreadedChat = 0
-            }else{
-                chatData[index].totalUnreadedChat = 1
-            }
+    func togglePinned(for item: WhatsappChatsStorage){
+        item.pinned.toggle()
+        
+        do{
+            try modelContext.save()
+            fetchData()
+        }catch{
+            print("Error when trying to update the data after togglePinned(): \(error)")
         }
     }
     
-    func deleteAChat(for item: WhatsappChatsModel){
-        if let index = chatData.firstIndex(where: {$0.id == item.id}){
-            chatData.remove(at: index)
-            if let archivedDataIndex = archivedChatData.firstIndex(where: {$0.id == item.id}){
-                archivedChatData.remove(at: archivedDataIndex)
-            }
+    func toggleRead(for item: WhatsappChatsStorage){
+        if(item.totalUnreadedChat > 0){
+            item.totalUnreadedChat = 1
+        }else{
+            item.totalUnreadedChat = 0
+        }
+        
+        do{
+            try modelContext.save()
+            fetchData()
+        }catch{
+            print("Error when trying to update data in toggleRead(): \(error)")
+        }
+    }
+    
+    func moveToArchive(for item: WhatsappChatsStorage){
+        let archivedChat = WhatsappArchivedChatsStorage(id: item.id, username: item.username, latestActivityTime: item.latestActivityTime, latestChatBubble: item.latestChatBubble, pinned: item.pinned, totalUnreadedChat: item.totalUnreadedChat)
+        
+        modelContext.insert(archivedChat)
+        modelContext.delete(item)
+        
+        do{
+            try modelContext.save()
+            fetchData()
+        }catch{
+            print("Error when trying to update data in moveToArchive(): \(error)")
+        }
+    }
+    
+    func moveToChats(for item: WhatsappArchivedChatsStorage){
+        let theChat = WhatsappChatsStorage(id: item.id, username: item.username, latestActivityTime: item.latestActivityTime, latestChatBubble: item.latestChatBubble, pinned: item.pinned, totalUnreadedChat: item.totalUnreadedChat)
+        
+        modelContext.insert(theChat)
+        modelContext.delete(item)
+        
+        do{
+            try modelContext.save()
+            fetchData()
+        }catch{
+            print("Error when trying to update data in moveToChats(): \(error)")
         }
     }
     
@@ -105,5 +314,36 @@ import Photos
             guard let asset = fetchResult.object(at: index) as? PHAsset else { return nil }
             return MediaItem(id: asset.localIdentifier, asset: asset)
         }
+    }
+    
+    func fetchData(){
+        do{
+            let descriptor = FetchDescriptor<WhatsappChatsStorage>(sortBy: [SortDescriptor(\.id)])
+            let archivedDescriptor = FetchDescriptor<WhatsappArchivedChatsStorage>(sortBy: [SortDescriptor(\.id)])
+            
+            chats = try modelContext.fetch(descriptor)
+            archivedChats = try modelContext.fetch(archivedDescriptor)
+        }catch{
+            print("Fetching data from view model failed: \(error)")
+        }
+    }
+    
+    @MainActor
+    func initiateData(){
+        print("iniating data...")
+        if(chats.isEmpty){
+            WhatsappChatsExample.Chats.map{
+                let chat = WhatsappChatsStorage(id: $0.id, username: $0.username, latestActivityTime: $0.latestActivityTime, latestChatBubble: $0.latestChatBubble, pinned: $0.pinned, totalUnreadedChat: $0.totalUnreadedChat)
+                
+                modelContext.insert(chat)
+                do{
+                    try modelContext.save()
+                    fetchData()
+                }catch{
+                    print("Error while initializing data: \(error)")
+                }
+            }
+        }
+        print("initiate data finished")
     }
 }

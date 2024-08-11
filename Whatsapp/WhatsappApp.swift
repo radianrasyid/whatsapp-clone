@@ -10,9 +10,12 @@ import SwiftData
 
 @main
 struct WhatsappApp: App {
+    @Environment(\.modelContext) private var modelContext
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
+            WhatsappChatsStorage.self,
+            WhatsappArchivedChatsStorage.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -26,7 +29,12 @@ struct WhatsappApp: App {
     var body: some Scene {
         WindowGroup {
             WhatsappMainView()
+                .preferredColorScheme(.dark)
         }
         .modelContainer(sharedModelContainer)
+    }
+    
+    init(){
+        print(URL.applicationSupportDirectory.path(percentEncoded: false))
     }
 }

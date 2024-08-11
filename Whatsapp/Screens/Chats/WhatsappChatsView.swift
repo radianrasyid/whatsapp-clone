@@ -7,9 +7,13 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
 struct WhatsappChatsView: View {
-    @State private var viewModel = WhatsappChatsViewModel()
+    @Environment(\.modelContext) private var modelContext
+    @State private var viewModel: WhatsappChatsContextViewModel
+    @State private var isShowingV2 = false
+    
     var body: some View {
         NavigationStack{
             List{
@@ -74,14 +78,16 @@ struct WhatsappChatsView: View {
                 .listRowSeparator(.hidden)
                 //                .listRowInsets(EdgeInsets())
                 
-                Button(action: {}, label: {
+                Button(action: {
+                    viewModel.isShowingArchivedChats.toggle()
+                }, label: {
                     HStack{
                         Image(systemName: "archivebox")
                         Text("Archived")
                     }
                 })
                 
-                ForEach(viewModel.chatData.sorted(by: {
+                ForEach(viewModel.chats.sorted(by: {
                     (chat1, chat2) -> Bool in
                     if chat1.pinned && !chat2.pinned{
                         return true
@@ -92,16 +98,24 @@ struct WhatsappChatsView: View {
                     }
                 }), id: \.id){
                     item in
-                    WhatsappChatItemComp(data: item)
-                        .whatsappLeadingSwipeActions(item: item, viewModel: $viewModel)
-                        .whatsappTrailingSwipeActions(item: item, viewModel: $viewModel)
+                    NavigationLink(destination: {
+                        WhatsappRoomChatView(data: item)
+                    }, label: {
+                        WhatsappChatItemComp(data: item)
+                            .whatsappLeadingSwipeActions(item: item, viewModel: $viewModel)
+                            .whatsappTrailingSwipeActions(item: item, viewModel: $viewModel)
+                    })
                 }
-                
+            }
+            .refreshable {
+                viewModel.initiateData()
             }
             .toolbar{
                 ToolbarItem(placement: .topBarLeading){
                     Menu(content: {
-                        Button(action: {}, label: {
+                        Button(action: {
+                            viewModel.addSample()
+                        }, label: {
                             HStack{
                                 Text("Select chats")
                                 Spacer()
@@ -140,6 +154,9 @@ struct WhatsappChatsView: View {
             .listStyle(PlainListStyle())
             .searchable(text: $viewModel.searchText)
             .navigationTitle("Chats")
+            .navigationDestination(isPresented: $viewModel.isShowingArchivedChats){
+                WhatsappArchivedChatsView(viewModel: $viewModel)
+            }
             .sheet(isPresented: $viewModel.isMoreSheetShowed, content: {
                 WhatsappChatMoreView(viewModel: $viewModel)
                 .foregroundStyle(Color(.label))
@@ -172,43 +189,15 @@ struct WhatsappChatsView: View {
             .searchable(text: $viewModel.searchText)
         }
     }
-}
-
-struct WhatsappLeadingSwipeActionsModifier: ViewModifier {
-    let item: WhatsappChatsModel
-    @Binding var viewModel: WhatsappChatsViewModel
-
-    func body(content: Content) -> some View {
-        content
-            .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                Button(action: {
-                    viewModel.toggleRead(for: item)
-                }, label: {
-                    VStack {
-                        Image(systemName: item.totalUnreadedChat > 0 ? "message.fill" : "message.badge.fill")
-                        Text(item.totalUnreadedChat > 0 ? "Read" : "Unread")
-                    }
-                    .tint(Color(.systemGreen))
-                    .foregroundStyle(Color(.red))
-                })
-                Button(action: {
-                    viewModel.togglePinned(for: item)
-                }, label: {
-                    VStack {
-                        Image(systemName: item.pinned ? "pin.slash.fill" : "pin.fill")
-                            .rotationEffect(.degrees(45))
-                        Text(item.pinned ? "Unpin" : "Pin")
-                    }
-                    .rotationEffect(.degrees(45))
-                    .tint(Color(.systemGray6))
-                    .foregroundStyle(Color(.red))
-                })
-            }
+    
+    init(modelContext: ModelContext){
+        let viewModel = WhatsappChatsContextViewModel(modelContext: modelContext)
+        _viewModel = State(initialValue: viewModel)
     }
 }
 
 struct WhatsappCreateChatSheetView: View {
-    @Binding var viewModel: WhatsappChatsViewModel
+    @Binding var viewModel: WhatsappChatsContextViewModel
     var body: some View {
         HStack{
             Image(systemName: "chevron.left")
@@ -257,16 +246,51 @@ struct WhatsappCreateChatSheetView: View {
     }
 }
 
+struct WhatsappLeadingSwipeActionsModifier: ViewModifier {
+    let item: WhatsappChatsStorage
+    @Binding var viewModel: WhatsappChatsContextViewModel
+
+    func body(content: Content) -> some View {
+        content
+            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                Button(action: {
+                    viewModel.toggleRead(for: item)
+                }, label: {
+                    VStack {
+                        Image(systemName: item.totalUnreadedChat > 0 ? "message.fill" : "message.badge.fill")
+                        Text(item.totalUnreadedChat > 0 ? "Read" : "Unread")
+                    }
+                    .tint(Color(.systemGreen))
+                    .foregroundStyle(Color(.red))
+                })
+                Button(action: {
+                    withAnimation(.easeInOut){
+                        viewModel.togglePinned(for: item)
+                    }
+                }, label: {
+                    VStack {
+                        Image(systemName: item.pinned ? "pin.slash.fill" : "pin.fill")
+                            .rotationEffect(.degrees(45))
+                        Text(item.pinned ? "Unpin" : "Pin")
+                    }
+                    .rotationEffect(.degrees(45))
+                    .tint(Color(.systemGray6))
+                    .foregroundStyle(Color(.red))
+                })
+            }
+    }
+}
+
 struct WhatsappTrailingSwipeActionsModifier: ViewModifier {
-    let item: WhatsappChatsModel
-    @Binding var viewModel: WhatsappChatsViewModel
+    let item: WhatsappChatsStorage
+    @Binding var viewModel: WhatsappChatsContextViewModel
 
     func body(content: Content) -> some View {
         content
             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                 Button(action: {
                     withAnimation(.easeOut(duration: 0.2)){
-                        viewModel.moveToArchived(for: item)
+                        viewModel.moveToArchive(for: item)
                     }
                 }, label: {
                     VStack {
@@ -277,7 +301,7 @@ struct WhatsappTrailingSwipeActionsModifier: ViewModifier {
                     .foregroundStyle(Color(.red))
                 })
                 Button(action: {
-                    viewModel.sheetData = item
+                    viewModel.sheetData = .regular(item)
                 }, label: {
                     VStack {
                         Image(systemName: "ellipsis")
@@ -293,12 +317,19 @@ struct WhatsappTrailingSwipeActionsModifier: ViewModifier {
 }
 
 struct WhatsappChatMoreView: View {
-    @Binding var viewModel: WhatsappChatsViewModel
+    @Binding var viewModel: WhatsappChatsContextViewModel
     var body: some View {
         List{
             HStack{
                 Image(systemName: "person.fill")
-                Text(viewModel.sheetData?.username ?? "")
+                if let sheetData = viewModel.sheetData {
+                    switch sheetData {
+                    case .regular(let whatsappChatsStorage):
+                        Text(whatsappChatsStorage.username)
+                    case .archived(let whatsappArchivedChatsStorage):
+                        Text(whatsappArchivedChatsStorage.username)
+                    }
+                }
                 Spacer()
                 
                 Button(action: {
@@ -351,7 +382,14 @@ struct WhatsappChatMoreView: View {
             Section{
                 Button(action: {}, label: {
                     HStack{
-                        Text("Block \(viewModel.sheetData?.username ?? "")")
+                        if let sheetData = viewModel.sheetData {
+                            switch sheetData {
+                            case .regular(let whatsappChatsStorage):
+                                Text("Block \(whatsappChatsStorage.username)")
+                            case .archived(let whatsappArchivedChatsStorage):
+                                Text("Block \(whatsappArchivedChatsStorage.username)")
+                            }
+                        }
                         Spacer()
                         Image(systemName: "hand.raised")
                     }
@@ -371,16 +409,26 @@ struct WhatsappChatMoreView: View {
 }
 
 extension View {
-    func whatsappLeadingSwipeActions(item: WhatsappChatsModel, viewModel: Binding<WhatsappChatsViewModel>) -> some View {
+    func whatsappLeadingSwipeActions(item: WhatsappChatsStorage, viewModel: Binding<WhatsappChatsContextViewModel>) -> some View {
         self.modifier(WhatsappLeadingSwipeActionsModifier(item: item, viewModel: viewModel))
     }
 
-    func whatsappTrailingSwipeActions(item: WhatsappChatsModel, viewModel: Binding<WhatsappChatsViewModel>) -> some View {
+    func whatsappTrailingSwipeActions(item: WhatsappChatsStorage, viewModel: Binding<WhatsappChatsContextViewModel>) -> some View {
         self.modifier(WhatsappTrailingSwipeActionsModifier(item: item, viewModel: viewModel))
     }
 }
 
-
 #Preview {
-    WhatsappChatsView()
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: WhatsappChatsStorage.self, WhatsappArchivedChatsStorage.self, configurations: config)
+        
+        // Add some sample data
+        let sampleChat = WhatsappChatsStorage(username: "John Doe", latestActivityTime: "10:30 AM", latestChatBubble: "Hello!", pinned: false, totalUnreadedChat: 2)
+        container.mainContext.insert(sampleChat)
+        
+        return WhatsappChatsView(modelContext: container.mainContext)
+    } catch {
+        fatalError("Failed to create model container: \(error.localizedDescription)")
+    }
 }

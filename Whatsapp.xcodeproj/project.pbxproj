@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F70B1A202C68CE6700B9029F /* WhatsappChatsInputGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70B1A1F2C68CE6700B9029F /* WhatsappChatsInputGroup.swift */; };
+		F70B1A222C68D37900B9029F /* WhatsappRoomChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70B1A212C68D37900B9029F /* WhatsappRoomChatView.swift */; };
+		F70EABA32C636246005B335E /* WhatsappArchivedChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70EABA22C636246005B335E /* WhatsappArchivedChatsView.swift */; };
+		F70EABA82C636EC0005B335E /* WhatsappAppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70EABA72C636EC0005B335E /* WhatsappAppStorage.swift */; };
 		F734C1862C608F2600BA6FA3 /* WhatsappCallsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734C1852C608F2600BA6FA3 /* WhatsappCallsViewModel.swift */; };
 		F734C1882C6099D000BA6FA3 /* WhatsappCallsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734C1872C6099D000BA6FA3 /* WhatsappCallsDetailViewModel.swift */; };
 		F734C18A2C60A91B00BA6FA3 /* WhatsappChatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734C1892C60A91B00BA6FA3 /* WhatsappChatsModel.swift */; };
@@ -25,6 +29,8 @@
 		F776BE7C2C379E8F00BB54C5 /* WhatsappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F776BE7B2C379E8F00BB54C5 /* WhatsappUITests.swift */; };
 		F776BE7E2C379E8F00BB54C5 /* WhatsappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F776BE7D2C379E8F00BB54C5 /* WhatsappUITestsLaunchTests.swift */; };
 		F776BE942C379F7B00BB54C5 /* WhatsappUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F776BE932C379F7B00BB54C5 /* WhatsappUpdatesView.swift */; };
+		F783243B2C648C6800C99D96 /* WhatsappChatsExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = F783243A2C648C6800C99D96 /* WhatsappChatsExample.swift */; };
+		F783F4BA2C65C75F006D6F0A /* WhatsappChatsV2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F783F4B92C65C75F006D6F0A /* WhatsappChatsV2View.swift */; };
 		F784336E2C3854B00003E9CD /* WhatsappUpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F784336D2C3854B00003E9CD /* WhatsappUpdatesViewModel.swift */; };
 		F78433702C3857550003E9CD /* WhatsappCallsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F784336F2C3857550003E9CD /* WhatsappCallsView.swift */; };
 		F78433742C3857890003E9CD /* WhatsappChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78433732C3857890003E9CD /* WhatsappChatsView.swift */; };
@@ -69,6 +75,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F70B1A1F2C68CE6700B9029F /* WhatsappChatsInputGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappChatsInputGroup.swift; sourceTree = "<group>"; };
+		F70B1A212C68D37900B9029F /* WhatsappRoomChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappRoomChatView.swift; sourceTree = "<group>"; };
+		F70EABA22C636246005B335E /* WhatsappArchivedChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappArchivedChatsView.swift; sourceTree = "<group>"; };
+		F70EABA72C636EC0005B335E /* WhatsappAppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappAppStorage.swift; sourceTree = "<group>"; };
 		F734C1852C608F2600BA6FA3 /* WhatsappCallsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappCallsViewModel.swift; sourceTree = "<group>"; };
 		F734C1872C6099D000BA6FA3 /* WhatsappCallsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappCallsDetailViewModel.swift; sourceTree = "<group>"; };
 		F734C1892C60A91B00BA6FA3 /* WhatsappChatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappChatsModel.swift; sourceTree = "<group>"; };
@@ -90,6 +100,8 @@
 		F776BE7B2C379E8F00BB54C5 /* WhatsappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappUITests.swift; sourceTree = "<group>"; };
 		F776BE7D2C379E8F00BB54C5 /* WhatsappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F776BE932C379F7B00BB54C5 /* WhatsappUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappUpdatesView.swift; sourceTree = "<group>"; };
+		F783243A2C648C6800C99D96 /* WhatsappChatsExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappChatsExample.swift; sourceTree = "<group>"; };
+		F783F4B92C65C75F006D6F0A /* WhatsappChatsV2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappChatsV2View.swift; sourceTree = "<group>"; };
 		F784336D2C3854B00003E9CD /* WhatsappUpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappUpdatesViewModel.swift; sourceTree = "<group>"; };
 		F784336F2C3857550003E9CD /* WhatsappCallsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappCallsView.swift; sourceTree = "<group>"; };
 		F78433732C3857890003E9CD /* WhatsappChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappChatsView.swift; sourceTree = "<group>"; };
@@ -141,6 +153,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F70EABA42C636EA3005B335E /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				F70EABA72C636EC0005B335E /* WhatsappAppStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		F734C1842C608F1200BA6FA3 /* viewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +201,7 @@
 		F776BE5D2C379E8D00BB54C5 /* Whatsapp */ = {
 			isa = PBXGroup;
 			children = (
+				F70EABA42C636EA3005B335E /* Storage */,
 				F7AE69BF2C37EF23007789EF /* Components */,
 				F776BE8D2C379F2200BB54C5 /* Util */,
 				F776BE8C2C379F1A00BB54C5 /* Services */,
@@ -256,6 +277,7 @@
 		F776BE8D2C379F2200BB54C5 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				F783243A2C648C6800C99D96 /* WhatsappChatsExample.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -293,6 +315,9 @@
 			children = (
 				F734C18D2C60CE9500BA6FA3 /* viewModels */,
 				F78433732C3857890003E9CD /* WhatsappChatsView.swift */,
+				F70EABA22C636246005B335E /* WhatsappArchivedChatsView.swift */,
+				F783F4B92C65C75F006D6F0A /* WhatsappChatsV2View.swift */,
+				F70B1A212C68D37900B9029F /* WhatsappRoomChatView.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -332,6 +357,7 @@
 				F7E3F72B2C3A8F0400D9D6CB /* WhatsappContactDetailsListComp.swift */,
 				F734C18B2C60AAC600BA6FA3 /* WhatsappChatItemComp.swift */,
 				F734C1902C613AEC00BA6FA3 /* WhatsappCameraComp.swift */,
+				F70B1A1F2C68CE6700B9029F /* WhatsappChatsInputGroup.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -486,8 +512,12 @@
 				F7CBBDC92C5F0D7F0039B508 /* MainViewModel.swift in Sources */,
 				F734C18F2C60CEAA00BA6FA3 /* WhatsappChatsViewModel.swift in Sources */,
 				F7FD22052C396D520069B93D /* WhatsappCallsDetailView.swift in Sources */,
+				F70B1A202C68CE6700B9029F /* WhatsappChatsInputGroup.swift in Sources */,
+				F783243B2C648C6800C99D96 /* WhatsappChatsExample.swift in Sources */,
 				F734C18C2C60AAC600BA6FA3 /* WhatsappChatItemComp.swift in Sources */,
+				F70B1A222C68D37900B9029F /* WhatsappRoomChatView.swift in Sources */,
 				F734C1912C613AEC00BA6FA3 /* WhatsappCameraComp.swift in Sources */,
+				F70EABA32C636246005B335E /* WhatsappArchivedChatsView.swift in Sources */,
 				F78433742C3857890003E9CD /* WhatsappChatsView.swift in Sources */,
 				F784337A2C3864400003E9CD /* WhatsappContactList.swift in Sources */,
 				F7CBBDCB2C5F0EC40039B508 /* WhatsappMainTabModel.swift in Sources */,
@@ -499,6 +529,7 @@
 				F7AE69C32C37F31E007789EF /* WhatsappUserStoryThumbnail.swift in Sources */,
 				F78433802C3865E40003E9CD /* WhatsappUnfollowedChannelList.swift in Sources */,
 				F78433702C3857550003E9CD /* WhatsappCallsView.swift in Sources */,
+				F70EABA82C636EC0005B335E /* WhatsappAppStorage.swift in Sources */,
 				F75FDD0D2C3BDDE30030B03B /* CommunitiesModel.swift in Sources */,
 				F7E3F72A2C3A89C700D9D6CB /* WhatsappContactViewTopPart.swift in Sources */,
 				F7FD22022C3936EE0069B93D /* WhatsappCalls.swift in Sources */,
@@ -509,6 +540,7 @@
 				F78433842C3868440003E9CD /* WhatsappSearchField.swift in Sources */,
 				F78433822C38680E0003E9CD /* WhatsappFindChannels.swift in Sources */,
 				F7CBBDCD2C5F12AB0039B508 /* WhatsappUpdatesItemModel.swift in Sources */,
+				F783F4BA2C65C75F006D6F0A /* WhatsappChatsV2View.swift in Sources */,
 				F776BE632C379E8D00BB54C5 /* Item.swift in Sources */,
 				F776BE5F2C379E8D00BB54C5 /* WhatsappApp.swift in Sources */,
 			);

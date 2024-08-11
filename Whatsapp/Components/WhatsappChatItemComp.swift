@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WhatsappChatItemComp: View {
-    var data: WhatsappChatsModel
+    var data: WhatsappChatsStorage
     var body: some View {
         HStack(alignment: .top){
             Image(systemName: "person.fill")
@@ -52,5 +52,5 @@ struct WhatsappChatItemComp: View {
 }
 
 #Preview {
-    WhatsappChatItemComp(data: WhatsappChatsModel(username: "John Doe", latestActivityTime: "Thursday", latestChatBubble: "Bjir", pinned: true, totalUnreadedChat: 0))
+    WhatsappChatItemComp(data: WhatsappChatsStorage(username: "John Doe", latestActivityTime: "Thursday", latestChatBubble: "Bjir", pinned: true, totalUnreadedChat: 0))
 }

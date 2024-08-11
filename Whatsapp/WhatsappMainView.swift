@@ -12,7 +12,7 @@ struct WhatsappMainView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     
-    @State private var viewModel = WhatsappMainViewModel()
+    @State private var globalViewModel: WhatsappMainViewModel? = nil
     
     init(){
         UITabBarItem.appearance().badgeColor = .systemGreen
@@ -21,8 +21,8 @@ struct WhatsappMainView: View {
     }
     
     var body: some View {
-        TabView{
-            ForEach(viewModel.TabItems, id: \.id){
+        TabView(){
+            ForEach(globalViewModel?.TabItems ?? [], id: \.id){
                 item in
                 item.content
                     .tabItem {
@@ -37,6 +37,12 @@ struct WhatsappMainView: View {
                     .tint(Color(.systemGreen))
             }
         }
+        .onAppear {
+            if globalViewModel == nil {
+                globalViewModel = WhatsappMainViewModel(modelContext: modelContext)
+                    }
+                }
+        .environment(globalViewModel)
         .tint(Color(.label))
     }
 }
