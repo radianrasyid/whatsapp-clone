@@ -24,9 +24,14 @@ struct WhatsappMessageItemViewModel: Identifiable {
     }
     
     static let stubMessages: [WhatsappMessageItemViewModel] = [
-        WhatsappMessageItemViewModel(text: "Hi There", direction: .sent, type: .text, status: .read),
-        WhatsappMessageItemViewModel(text: "Check out this photo", direction: .received, type: .image, status: .sent),
-        WhatsappMessageItemViewModel(text: "Play this video", direction: .sent, type: .video, status: .sent)
+        WhatsappMessageItemViewModel(text: "Hey, what’s up?", direction: .sent, type: .text, status: .read),
+        WhatsappMessageItemViewModel(text: "Not much, just chilling. How about you?", direction: .received, type: .text, status: .read),
+        WhatsappMessageItemViewModel(text: "Same here. Want to grab coffee later?", direction: .sent, type: .text, status: .read),
+        WhatsappMessageItemViewModel(text: "Sure, sounds good! ☕", direction: .received, type: .text, status: .read),
+        WhatsappMessageItemViewModel(text: "Check out this pic I took yesterday", direction: .sent, type: .image, status: .sent),
+        WhatsappMessageItemViewModel(text: "Wow, that looks amazing!", direction: .received, type: .text, status: .read),
+        WhatsappMessageItemViewModel(text: "Here’s a video from the concert last night 🎶", direction: .received, type: .video, status: .sent),
+        WhatsappMessageItemViewModel(text: "That was such a great time!", direction: .sent, type: .text, status: .read)
     ]
 }
 

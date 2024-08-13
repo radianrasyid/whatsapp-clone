@@ -14,6 +14,8 @@ struct WhatsappBubbleTextView: View {
         VStack(alignment: item.horizontalAlignment){
             Text(item.text)
                 .padding(10)
+                .background(WhatsappTextBubbleColor(item.direction))
+                .clipShape(.rect(cornerRadius: 10, style: .continuous))
                 .applyTail(item.direction)
             
             timeStampTextView(item.status, direction: item.direction)
@@ -30,29 +32,7 @@ struct WhatsappBubbleTextView: View {
                 .foregroundStyle(Color(.systemGray))
             
             if(direction == .sent){
-                switch(messageStatus){
-                case .failed:
-                    Image(systemName: "exclamationmark.circle.fill")
-                        .resizable()
-                        .frame(width: 15, height: 15)
-                        .foregroundStyle(Color(.systemRed))
-                case .read:
-                    Image(.seen)
-                        .resizable()
-                        .renderingMode(.template)
-                        .frame(width: 15, height: 15)
-                        .foregroundStyle(Color.blue)
-                case .received:
-                    Image(.seen)
-                        .resizable()
-                        .renderingMode(.template)
-                        .frame(width: 15, height: 15)
-                        .foregroundStyle(Color(.systemGray))
-                case .sent:
-                    Image(systemName: "checkmark")
-                        .resizable()
-                        .frame(width: 10, height: 7)
-                }
+                senderStatusState(status: item.status)
             }
         }
     }

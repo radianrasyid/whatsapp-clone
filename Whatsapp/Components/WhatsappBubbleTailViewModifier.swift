@@ -13,8 +13,6 @@ private struct WhatsappBubbleTailModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .background(WhatsappTextBubbleColor(direction))
-            .clipShape(.rect(cornerRadius: 10, style: .continuous))
             .overlay(alignment: direction == .received ? .bottomLeading : .bottomTrailing){
                 WhatsappBubbleTailView(direction: direction)
             }

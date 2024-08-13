@@ -49,6 +49,7 @@
 		F78433802C3865E40003E9CD /* WhatsappUnfollowedChannelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F784337F2C3865E40003E9CD /* WhatsappUnfollowedChannelList.swift */; };
 		F78433822C38680E0003E9CD /* WhatsappFindChannels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78433812C38680E0003E9CD /* WhatsappFindChannels.swift */; };
 		F78433842C3868440003E9CD /* WhatsappSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78433832C3868440003E9CD /* WhatsappSearchField.swift */; };
+		F790531D2C6B7164007A4F07 /* WhatsappUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F790531C2C6B7164007A4F07 /* WhatsappUIHelper.swift */; };
 		F7A10FD72C4254B800E9F85C /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A10FD62C4254B800E9F85C /* ChatModel.swift */; };
 		F7AE69C12C37EF2C007789EF /* WhatsappCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AE69C02C37EF2C007789EF /* WhatsappCornerRadius.swift */; };
 		F7AE69C32C37F31E007789EF /* WhatsappUserStoryThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AE69C22C37F31E007789EF /* WhatsappUserStoryThumbnail.swift */; };
@@ -127,6 +128,7 @@
 		F784337F2C3865E40003E9CD /* WhatsappUnfollowedChannelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappUnfollowedChannelList.swift; sourceTree = "<group>"; };
 		F78433812C38680E0003E9CD /* WhatsappFindChannels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappFindChannels.swift; sourceTree = "<group>"; };
 		F78433832C3868440003E9CD /* WhatsappSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappSearchField.swift; sourceTree = "<group>"; };
+		F790531C2C6B7164007A4F07 /* WhatsappUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappUIHelper.swift; sourceTree = "<group>"; };
 		F7A10FD62C4254B800E9F85C /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		F7AE69C02C37EF2C007789EF /* WhatsappCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappCornerRadius.swift; sourceTree = "<group>"; };
 		F7AE69C22C37F31E007789EF /* WhatsappUserStoryThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsappUserStoryThumbnail.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				F783243A2C648C6800C99D96 /* WhatsappChatsExample.swift */,
+				F790531C2C6B7164007A4F07 /* WhatsappUIHelper.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				F764F1D02C6B53440012A45F /* WhatsappBubbleImageView.swift in Sources */,
 				F7CBBDC92C5F0D7F0039B508 /* MainViewModel.swift in Sources */,
 				F734C18F2C60CEAA00BA6FA3 /* WhatsappChatsViewModel.swift in Sources */,
+				F790531D2C6B7164007A4F07 /* WhatsappUIHelper.swift in Sources */,
 				F7FD22052C396D520069B93D /* WhatsappCallsDetailView.swift in Sources */,
 				F70B1A202C68CE6700B9029F /* WhatsappChatsInputGroup.swift in Sources */,
 				F783243B2C648C6800C99D96 /* WhatsappChatsExample.swift in Sources */,

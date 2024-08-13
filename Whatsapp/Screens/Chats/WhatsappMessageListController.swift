@@ -23,7 +23,7 @@ final class WhatsappMessageListController: UIViewController {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-//        tableView.backgroundColor = .red
+        tableView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
