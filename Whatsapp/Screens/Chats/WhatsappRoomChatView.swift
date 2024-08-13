@@ -12,18 +12,7 @@ struct WhatsappRoomChatView: View {
     @State private var isTextfieldFocused: Bool = false
     var body: some View {
         NavigationStack{
-            ScrollView{
-                LazyVStack{
-                    ForEach(0..<10, id: \.self){
-                        item in
-                        Text("\(data.username)")
-                            .font(.largeTitle)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 200)
-                            .background(Color(.gray).opacity(0.1))
-                    }
-                }
-            }
+            WhatsappMessageListView()
             .simultaneousGesture(DragGesture().onChanged{
                 _ in
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
