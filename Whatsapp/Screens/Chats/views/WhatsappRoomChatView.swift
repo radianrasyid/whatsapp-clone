@@ -21,11 +21,12 @@ struct WhatsappRoomChatView: View {
                 leadingNavItems()
                 trailingNavItems()
             }
-            .safeAreaInset(edge: .bottom){
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar(.hidden, for: .tabBar)
+            .safeAreaInset(edge: .bottom, spacing: 0){
                 WhatsappChatsInputGroup()
                     .background(Color(.whatsappWhite))
             }
-            .toolbar(.hidden, for: .tabBar)
         }
     }
 }
@@ -58,4 +59,8 @@ extension WhatsappRoomChatView {
             })
         }
     }
+}
+
+#Preview{
+    WhatsappRoomChatView(data: WhatsappChatsStorage(id: UUID(), username: "Radian Rasyid", latestActivityTime: "11:33 AM", latestChatBubble: "damn bro", pinned: true, totalUnreadedChat: 3))
 }

@@ -23,6 +23,10 @@ struct WhatsappMessageItemViewModel: Identifiable {
         return direction == .received ? .leading : .trailing
     }
     
+    var backgroundColor: Color {
+        return direction == .sent ? .bubbleSent : .bubbleReceived
+    }
+    
     static let stubMessages: [WhatsappMessageItemViewModel] = [
         WhatsappMessageItemViewModel(text: "Hey, what’s up?", direction: .sent, type: .text, status: .read),
         WhatsappMessageItemViewModel(text: "Not much, just chilling. How about you?", direction: .received, type: .text, status: .read),
@@ -31,7 +35,9 @@ struct WhatsappMessageItemViewModel: Identifiable {
         WhatsappMessageItemViewModel(text: "Check out this pic I took yesterday", direction: .sent, type: .image, status: .sent),
         WhatsappMessageItemViewModel(text: "Wow, that looks amazing!", direction: .received, type: .text, status: .read),
         WhatsappMessageItemViewModel(text: "Here’s a video from the concert last night 🎶", direction: .received, type: .video, status: .sent),
-        WhatsappMessageItemViewModel(text: "That was such a great time!", direction: .sent, type: .text, status: .read)
+        WhatsappMessageItemViewModel(text: "That was such a great time!", direction: .sent, type: .text, status: .read),
+        WhatsappMessageItemViewModel(text: "Check out this audio dude", direction: .sent, type: .audio, status: .received),
+        WhatsappMessageItemViewModel(text: "Damn bro, didn't it was him all along", direction: .received, type: .text, status: .sent)
     ]
 }
 
@@ -52,5 +58,5 @@ enum WhatsappConnectionStatus {
 }
 
 enum WhatsappMessageType {
-    case text, image, video
+    case text, image, video, audio
 }

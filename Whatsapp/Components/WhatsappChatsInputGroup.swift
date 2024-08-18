@@ -21,12 +21,12 @@ struct WhatsappChatsInputGroup: View {
                 TextField("", text: $textfieldValue, axis: .vertical)
                     .focused($isFocused)
                 Button(action: {}, label: {
-                    Image(systemName: "document")
+                    Image(systemName: "doc")
                         .foregroundStyle(Color(.label))
                 })
             }
             .padding(6)
-            .background(Color(.systemGray))
+            .background(Color(.textfieldChatInput))
             .clipShape(.rect(cornerRadius: 20))
             
             Button(action: {}, label: {
@@ -38,7 +38,7 @@ struct WhatsappChatsInputGroup: View {
                     .foregroundStyle(Color(.label))
             })
         }
-        .padding(.vertical, 12)
+        .padding(.vertical, 10)
         .padding(.horizontal, 10)
         .background(Color(.whatsappWhite))
     }

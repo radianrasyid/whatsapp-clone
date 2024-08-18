@@ -7,10 +7,22 @@
 
 import SwiftUI
 import SwiftData
+import FirebaseCore
+
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+
+    return true
+  }
+}
 
 @main
 struct WhatsappApp: App {
     @Environment(\.modelContext) private var modelContext
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -28,7 +40,7 @@ struct WhatsappApp: App {
 
     var body: some Scene {
         WindowGroup {
-            WhatsappMainView()
+            WhatsappLoginScreen()
                 .preferredColorScheme(.dark)
         }
         .modelContainer(sharedModelContainer)

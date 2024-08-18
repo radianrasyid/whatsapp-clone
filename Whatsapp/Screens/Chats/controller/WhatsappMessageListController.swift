@@ -57,8 +57,8 @@ extension WhatsappMessageListController: UITableViewDelegate, UITableViewDataSou
                 WhatsappBubbleImageView(item: message)
             case .video:
                 WhatsappBubbleImageView(item: message)
-            default:
-                Text("Cant preview this message")
+            case .audio:
+                WhatsappBubbleAudioView(item: message)
             }
         }
         return cell
