@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import Firebase
+import FirebaseStorage
 
 func senderStatusState(status: WhatsappConnectionStatus) -> some View {
     switch(status){
@@ -60,4 +62,9 @@ func senderStatusImageState(status: WhatsappConnectionStatus) -> some View {
             .frame(width: 10, height: 7)
             .foregroundStyle(Color(.darkGray))
     }
+}
+
+enum WhatsappFirebaseConstants {
+    private static let DatabaseRef = Database.database().reference()
+    static let UserRef = DatabaseRef.child("users")
 }

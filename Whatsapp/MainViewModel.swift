@@ -11,6 +11,7 @@ import SwiftData
 
 @Observable class WhatsappMainViewModel {
     var modelContext: ModelContext
+    var currentLoggedInUser: WhatsappUserItem = WhatsappAuthManager.shared.currentUser
     var tabHodden: Bool = false
     init(modelContext: ModelContext) {
         self.modelContext = modelContext

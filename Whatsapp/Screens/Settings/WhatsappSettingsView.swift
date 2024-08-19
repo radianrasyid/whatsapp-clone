@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 
 struct WhatsappSettingsView: View {
+    @Environment(WhatsappMainViewModel.self) private var mainViewModel
     @State private var searchableString = ""
+    @State private var viewModel = WhatsappSettingViewModel()
     var body: some View {
         NavigationStack{
             List{
@@ -20,7 +22,7 @@ struct WhatsappSettingsView: View {
                             .frame(width: 50, height: 50)
                             .clipShape(.circle)
                         VStack(alignment: .leading){
-                            Text("Radian Rasyid")
+                            Text("\(mainViewModel.currentLoggedInUser.username)")
                             Text("Status")
                                 .font(.caption)
                                 .foregroundStyle(Color(.systemGray))
@@ -93,16 +95,17 @@ struct WhatsappSettingsView: View {
                 .foregroundStyle(Color(.label))
                 
                 Section{
-                    Button(action: {}, label: {
-                        HStack{
-                            Image(systemName: "key")
-                            Text("Account")
-                            
-                            Spacer()
-                            
-                            Image(systemName: "chevron.right")
-                                .foregroundStyle(Color(.systemGray))
-                        }
+                    NavigationLink(destination: {
+                        WhatsappSettingAccountView(viewModel: $viewModel)
+                    }, label: {
+                        Button(action: {}, label: {
+                            HStack{
+                                Image(systemName: "key")
+                                Text("Account")
+                                
+                                Spacer()
+                            }
+                        })
                     })
                     Button(action: {}, label: {
                         HStack{
@@ -208,7 +211,7 @@ struct WhatsappSettingsView: View {
                 })
                 .foregroundStyle(Color(.label))
             }
-            .searchable(text: $searchableString)
+            .searchable(text: $viewModel.searchableString)
             .navigationTitle(Text("Settings"))
         }
     }

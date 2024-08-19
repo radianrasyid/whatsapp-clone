@@ -40,7 +40,7 @@ struct WhatsappApp: App {
 
     var body: some Scene {
         WindowGroup {
-            WhatsappLoginScreen()
+            WhatsappRootScreen()
                 .preferredColorScheme(.dark)
         }
         .modelContainer(sharedModelContainer)

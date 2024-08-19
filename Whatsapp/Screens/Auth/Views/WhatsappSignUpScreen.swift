@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WhatsappSignUpScreen: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var viewModel = WhatsappAuthScreenModel()
+    @Binding var viewModel: WhatsappAuthScreenModel
     var body: some View {
         NavigationStack{
             VStack{
@@ -20,9 +20,15 @@ struct WhatsappSignUpScreen: View {
                     .keyboardType(.emailAddress)
                     .textInputAutocapitalization(.never)
                 WhatsappUsernameTextField(usernameTextValue: $viewModel.username)
+                    .textInputAutocapitalization(.never)
                 WhatsappPasswordTextfield(passwordTextValue: $viewModel.password)
+                    .textInputAutocapitalization(.never)
                 
-                WhatsappAuthButton(buttonPlaceholder: "Sign up", onTap: {})
+                WhatsappAuthButton(buttonPlaceholder: "Sign up", onTap: {
+                    Task{
+                        await viewModel.handleSignUp()
+                    }
+                })
                     .disabled(viewModel.disableSignupButton)
                 
                 Spacer()
@@ -55,8 +61,4 @@ struct WhatsappSignUpScreen: View {
         })
         
     }
-}
-
-#Preview {
-    WhatsappSignUpScreen()
 }

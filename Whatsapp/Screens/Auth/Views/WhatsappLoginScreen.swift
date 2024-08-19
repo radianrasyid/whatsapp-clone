@@ -18,7 +18,9 @@ struct WhatsappLoginScreen: View {
                 
                 WhatsappEmailTextfield(emailTextValue: $viewModel.email)
                     .keyboardType(.emailAddress)
+                    .textInputAutocapitalization(.never)
                 WhatsappPasswordTextfield(passwordTextValue: $viewModel.password)
+                    .textInputAutocapitalization(.never)
                 
                 HStack{
                     Spacer()
@@ -31,7 +33,11 @@ struct WhatsappLoginScreen: View {
                 }
                 .padding(.vertical)
                 
-                WhatsappAuthButton(buttonPlaceholder: "Log in", onTap: {})
+                WhatsappAuthButton(buttonPlaceholder: "Log in", onTap: {
+                    Task{
+                        await viewModel.handleSignIn()
+                    }
+                })
                     .disabled(viewModel.disableLoginButton)
                 
                 Spacer()
@@ -44,12 +50,16 @@ struct WhatsappLoginScreen: View {
             .background(Color.teal.gradient)
             .ignoresSafeArea()
             .navigationBarBackButtonHidden()
+            .alert(isPresented: $viewModel.errorState.showError){
+                Alert(
+                    title: Text(viewModel.errorState.errorMessage), dismissButton: .default(Text("OK")))
+            }
         }
     }
     
     private func signUpButton() -> some View {
         NavigationLink(destination: {
-            WhatsappSignUpScreen()
+            WhatsappSignUpScreen(viewModel: $viewModel)
         }, label: {
             HStack{
                 Image(systemName: "sparkles")
