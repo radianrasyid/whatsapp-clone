@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WhatsappRoomChatView: View {
-    var data: WhatsappChatsStorage
+    @Binding var chatData: WhatsappChatsContextViewModel
     @State private var isTextfieldFocused: Bool = false
     var body: some View {
         NavigationStack{
@@ -38,7 +38,7 @@ extension WhatsappRoomChatView {
             Button(action: {}, label: {
                 HStack{
                     Image(systemName: "person.circle.fill")
-                    Text("Radian Rasyid")
+                    Text("\(chatData.newChannelItem?.members.first(where: {$0.uuid != WhatsappAuthManager.shared.currentUser.uuid})?.username ?? "")")
                         .font(.subheadline)
                 }
                 .foregroundStyle(Color(.label))
@@ -59,8 +59,4 @@ extension WhatsappRoomChatView {
             })
         }
     }
-}
-
-#Preview{
-    WhatsappRoomChatView(data: WhatsappChatsStorage(id: UUID(), username: "Radian Rasyid", latestActivityTime: "11:33 AM", latestChatBubble: "damn bro", pinned: true, totalUnreadedChat: 3))
 }

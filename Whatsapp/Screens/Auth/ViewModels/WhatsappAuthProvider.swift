@@ -127,3 +127,42 @@ extension WhatsappAuthManager {
         }
     }
 }
+
+extension WhatsappAuthManager {
+    static let testAccounts: [String] = [
+        "sandychicks@gmail.com",
+        "plankton@gmail.com",
+        "pearl@gmail.com",
+        "fred@gmail.com",
+        "babybird@gmail.com",
+        "valentina@gmail.com",
+        "crab@gmail.com",
+        "jackahuna@gmail",
+        "neptune@gmail.com",
+        "karen@gmail.com",
+        "eleven@gmail.com",
+        "mike@gmail.com",
+        "lucas@gmail.com",
+        "dustin@gmail.com",
+        "steve@gmail.com",
+        "nancy@gmail.com",
+        "maxine@gmail.com",
+        "billy@gmail.com",
+        "chiefhopper@gmail.com",
+        "jonathan@gmail.com",
+        "erica@gmail.com",
+        "eddiemunson@gmail.com",
+        "vecna@gmail.com",
+        "suzie@gmail.com",
+        "argyle@gmail.com",
+        "alexei@gmail.com",
+        "mrclarke@gmail.com",
+        "keith@gmail.com",
+        "murray@gmail.com",
+        "joyce@gmail.com",
+        "chrissy@gmail.com",
+        "demogorgon@gmail.com",
+        "karen@gmail.com",
+        "bob@gmail.com"
+    ]
+}

@@ -99,7 +99,7 @@ struct WhatsappChatsView: View {
                 }), id: \.id){
                     item in
                     NavigationLink(destination: {
-                        WhatsappRoomChatView(data: item)
+                        WhatsappRoomChatView(chatData: $viewModel)
                     }, label: {
                         WhatsappChatItemComp(data: item)
                             .whatsappLeadingSwipeActions(item: item, viewModel: $viewModel)
@@ -168,7 +168,13 @@ struct WhatsappChatsView: View {
                 .presentationDragIndicator(.hidden)
             })
             .sheet(isPresented: $viewModel.isCreateChatSheetShowed){
-                WhatsappCreateChatSheetView(viewModel: $viewModel)
+                WhatsappChatPartnerPickerView{
+                    channel in
+                    viewModel.handleCloseAddChannelSheet(channel)
+                }
+            }
+            .navigationDestination(isPresented: $viewModel.isNavigateToChatRoom){
+                WhatsappRoomChatView(chatData: $viewModel)
             }
             .fullScreenCover(isPresented: $viewModel.showingCamera) {
                 HStack{

@@ -196,6 +196,8 @@ enum WhatsappChatsStorageType {
         }
     }
     var isShowingArchivedChats: Bool = false
+    var isNavigateToChatRoom: Bool = false
+    var newChannelItem: WhatsappChannelItem?
     var showingCamera: Bool = false
     var image: UIImage?
     var recentMedia: [MediaItem] = []
@@ -218,6 +220,10 @@ enum WhatsappChatsStorageType {
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
         fetchData()
+    }
+    
+    func handleCloseAddChannelSheet(_ channel: WhatsappChannelItem) -> Void {
+        isCreateChatSheetShowed = false; newChannelItem = channel; isNavigateToChatRoom = true
     }
     
     func addSample(){
